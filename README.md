@@ -1,4 +1,4 @@
-# Registro de horas trabajadas de empleados mediante RFID con Arduino
+# Registro de horas trabajadas mediante RFID con Arduino
 
 ## Material
 
