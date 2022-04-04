@@ -15,7 +15,7 @@ if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_USUARIO_BASICO)
 
 $pdo = conectaDb();
 
-cabecera("empleados - Listar", MENU_empleados, PROFUNDIDAD_2);
+cabecera("Empleados - Listar", MENU_empleados, PROFUNDIDAD_2);
 
 $ordena = recogeValores("ordena", $cfg["dbempleadosColumnasOrden"], "nombre ASC");
 
