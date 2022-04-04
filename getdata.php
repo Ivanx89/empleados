@@ -31,7 +31,29 @@ if (!count($registros = $resultado->fetchAll())) {
     
 } else {
     print "    <p>Ya existía ese registro $card.</p>\n";
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password);
+
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    echo "Connected successfully";
+
+    $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, Hora) SELECT nombre, apellidos, RFID, CURRENT_TIME FROM empleados.empleados WHERE empleados.RFID = '$card';";
+
+    if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+    } else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
 }
 
 session_destroy();
+mysqli_close($conn);
 $pdo = null;

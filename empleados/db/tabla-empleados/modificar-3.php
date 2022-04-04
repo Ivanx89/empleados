@@ -32,7 +32,7 @@ $RFIDOk        = false;
 $idOk        = false;
 
 
-if (mb_strlen($nombre, "UTF-8") > $cfg["dbempleadosTamRFID"]) {
+if (mb_strlen($RFID, "UTF-8") > $cfg["dbempleadosTamRFID"]) {
     print "    <p class=\"aviso\">El nombre no puede tener más de $cfg[dbempleadosTamRFID] caracteres.</p>\n";
     print "\n";
 } else {
@@ -67,7 +67,7 @@ if (mb_strlen($correo, "UTF-8") > $cfg["dbempleadosTamCorreo"]) {
     $correoOk = true;
 }
 
-if ($nombre == "" && $apellidos == "" && $telefono == "" && $correo == "" && $RFIDOk == "") {
+if ($nombre == "" && $apellidos == "" && $telefono == "" && $correo == "" && $RFID == "") {
     print "    <p class=\"aviso\">Hay que rellenar al menos uno de los campos. No se ha guardado el registro.</p>\n";
     print "\n";
     $nombreOk = $apellidosOk = $telefonoOk = $correoOk = $RFIDOk = false;
@@ -79,7 +79,7 @@ if ($id == "") {
     $idOk = true;
 }
 
-if ($nombreOk && $apellidosOk && $telefonoOk && $correoOk && $idOk $RFIDOk) {
+if ($nombreOk && $apellidosOk && $telefonoOk && $correoOk && $idOk && $RFIDOk) {
     $consulta = "SELECT COUNT(*) FROM $cfg[dbempleadosTabla]
                  WHERE id = :id";
 
