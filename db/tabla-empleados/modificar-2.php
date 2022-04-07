@@ -56,7 +56,7 @@ if ($id == "") {
         print "          </tr>\n";
         print "          <tr>\n";
         print "            <td>RFID:</td>\n";
-        print "            <td><input type=\"text\" name=\"correo\" size=\"$cfg[formempleadosTamRFID]\" maxlength=\"$cfg[formempleadosTamRFID]\" value=\"$registro[RFID]\"></td>\n";
+        print "            <td><input type=\"text\" name=\"RFID\" size=\"$cfg[formempleadosTamRFID]\" maxlength=\"$cfg[formempleadosTamRFID]\" value=\"$registro[RFID]\"></td>\n";
         print "          </tr>\n";
         print "        </tbody>\n";
         print "      </table>\n";
