@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8b3f52d4-0429-425b-b85e-2d503cec4284" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/db/tabla-empleados/modificar-2.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/tabla-empleados/modificar-2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/tabla-empleados/modificar-3.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/tabla-empleados/modificar-3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/acceso/login-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/acceso/login-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/acceso/logout.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/administrador/borrar-todo-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/administrador/borrar-todo-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/administrador/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/comunes/biblioteca-mysql.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/comunes/biblioteca.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/comunes/config.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/comunes/mclibre-php-proyectos.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/connect.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/borrar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/borrar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/buscar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/buscar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/insertar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/insertar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/listar.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/modificar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/modificar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-empleados/modificar-3.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/borrar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/borrar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/buscar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/buscar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/insertar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/insertar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/listar.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/modificar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/modificar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-logs/modificar-3.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/borrar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/borrar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/buscar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/buscar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/insertar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/insertar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/listar.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/modificar-1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/modificar-2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/db/tabla-usuarios/modificar-3.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/getdata.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/img/abajo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/img/arriba.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/empleados/index.php" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="27U5J2DqydeGPg89F5if7kNfctB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8b3f52d4-0429-425b-b85e-2d503cec4284" name="Changes" comment="" />
+      <created>1649361752882</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649361752882</updated>
+    </task>
+    <servers />
+  </component>
+</project>
