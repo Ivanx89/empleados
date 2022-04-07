@@ -1,13 +1,13 @@
 <?php
-/* COnfiguración de la Base de Datos */
+/* Configuración de la Base de Datos */
 	$servername = "localhost";
-    $username = "root";		//put your phpmyadmin username.(default is "root")
+    $username = "root";		//phpmyadmin password (root)
     $password = "";			//if your phpmyadmin has a password put it here.(default is "root")
     $dbname = "empleados";
     
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
 	
 	if ($conn->connect_error) {
-        die("Database Connection failed: " . $conn->connect_error);
+        die("No se ha podido conectar a la base de datos: " . $conn->connect_error);
     }
 ?>
