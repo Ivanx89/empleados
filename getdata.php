@@ -45,7 +45,7 @@ if (!count($registros = $resultado->fetchAll())) {
     }
     echo "Connected successfully";
 
-    $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, Hora) SELECT nombre, apellidos, RFID, CURRENT_TIME FROM empleados.empleados WHERE empleados.RFID = '$card';";
+    $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, Hora) SELECT nombre, apellidos, RFID, CURRENT_TIMESTAMP FROM empleados.empleados WHERE empleados.RFID = '$card';";
 
     if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
