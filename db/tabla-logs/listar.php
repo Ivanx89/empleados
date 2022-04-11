@@ -84,6 +84,10 @@ if (!$resultado) {
     print "        </tbody>\n";
     print "      </table>\n";
     print "    </form>\n";
+
+    print " <form action=\"export.php\" method=\"post\"> ";
+    print " <input type=\"submit\" name=\"export\" class=\"excel\"value=\"Exportar a Excel\"/>";
+    print "</form>";
 }
 
 $pdo = null;
