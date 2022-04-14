@@ -22,17 +22,17 @@ if(isset($_POST["export"]))
   {
    $output .= '
     <tr>  
-                         <td>'.$row["id"].'</td>  
-                         <td>'.$row["nombre"].'</td>  
-                         <td>'.$row["apellidos"].'</td>  
+       <td>'.$row["id"].'</td>  
+       <td>'.$row["nombre"].'</td>  
+       <td>'.$row["apellidos"].'</td>  
        <td>'.$row["RFID"].'</td>  
        <td>'.$row["Hora"].'</td>
-                    </tr>
+     </tr>
    ';
   }
   $output .= '</table>';
   header('Content-Type: application/xls');
-  header('Content-Disposition: attachment; filename=horas.xls');
+  header('Content-Disposition: attachment; filename=Horas.xls');
   echo $output;
  }
 }
