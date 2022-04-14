@@ -14,5 +14,4 @@ if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_USUARIO_BASICO)
 }
 
 cabecera("empleados - Inicio", MENU_empleados, PROFUNDIDAD_2);
-
 pie();

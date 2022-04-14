@@ -50,7 +50,7 @@ if (!$resultado) {
     print "          </tr>\n";
     print "          <tr>\n";
     print "            <td>RFID:</td>\n";
-    print "            <td><input type=\"text\" name=\"RFID\" size=\"$cfg[formempleadosTamRFID]\" maxlength=\"$cfg[formempleadosTamRFID]\"></td>\n";
+    print "            <td><input type=\"text\" name=\"RFID\" size=\"$cfg[formempleadosTamRFID]\" value=\"$_SESSION[scan]\" placeholder=\"$_SESSION[scan]\" maxlength=\"$cfg[formempleadosTamRFID]\"></td>\n";
     print "          </tr>\n";
     print "        </tbody>\n";
     print "      </table>\n";
