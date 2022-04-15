@@ -15,101 +15,51 @@ if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_USUARIO_BASICO)
 
 $pdo = conectaDb();
 
-cabecera("empleados - Añadir 2", MENU_empleados, PROFUNDIDAD_2);
+cabecera("Empleados - Añadir 1", MENU_empleados, PROFUNDIDAD_2);
 
-$nombre    = recoge("nombre");
-$apellidos = recoge("apellidos");
-$telefono  = recoge("telefono");
-$correo    = recoge("correo");
-$RFID    = recoge("RFID");
+$consulta = "SELECT COUNT(*) FROM $cfg[dbempleadosTabla]";
 
-$nombreOk    = false;
-$apellidosOk = false;
-$telefonoOk  = false;
-$correoOk    = false;
-$RFIDOk    = false;
-
-if (mb_strlen($RFID, "UTF-8") > $cfg["dbempleadosTamRFID"]) {
-    print "    <p class=\"aviso\">El RFID no puede tener más de $cfg[dbempleadosTamRFID] caracteres.</p>\n";
+$resultado = $pdo->query($consulta);
+if (!$resultado) {
+    print "    <p class=\"aviso\">Error en la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
+} elseif ($resultado->fetchColumn() >= $cfg["dbempleadosMaxReg"]) {
+    print "    <p class=\"aviso\">Se ha alcanzado el número máximo de registros que se pueden guardar.</p>\n";
     print "\n";
+    print "    <p class=\"aviso\">Por favor, borre algún registro antes.</p>\n";
 } else {
-    $RFIDOk = true;
-}
-
-if (mb_strlen($nombre, "UTF-8") > $cfg["dbempleadosTamNombre"]) {
-    print "    <p class=\"aviso\">El nombre no puede tener más de $cfg[dbempleadosTamNombre] caracteres.</p>\n";
+    print "    <form action=\"insertar-3.php\" method=\"$cfg[formMethod]\">\n";
+    print "      <p>Escriba los datos del nuevo registro:</p>\n";
     print "\n";
-} else {
-    $nombreOk = true;
-}
-
-if (mb_strlen($apellidos, "UTF-8") > $cfg["dbempleadosTamApellidos"]) {
-    print "    <p class=\"aviso\">Los apellidos no pueden tener más de $cfg[dbempleadosTamApellidos] caracteres.</p>\n";
+    print "      <table>\n";
+    print "        <tbody>\n";
+    print "          <tr>\n";
+    print "            <td>Nombre:</td>\n";
+    print "            <td><input type=\"text\" name=\"nombre\" size=\"$cfg[formempleadosTamNombre]\" maxlength=\"$cfg[formempleadosTamNombre]\" autofocus></td>\n";
+    print "          </tr>\n";
+    print "          <tr>\n";
+    print "            <td>Apellidos:</td>\n";
+    print "            <td><input type=\"text\" name=\"apellidos\" size=\"$cfg[formempleadosTamApellidos]\" maxlength=\"$cfg[formempleadosTamApellidos]\"></td>\n";
+    print "          </tr>\n";
+    print "          <tr>\n";
+    print "            <td>Teléfono:</td>\n";
+    print "            <td><input type=\"text\" name=\"telefono\" size=\"$cfg[formempleadosTamTelefono]\" maxlength=\"$cfg[formempleadosTamTelefono]\"></td>\n";
+    print "          </tr>\n";
+    print "          <tr>\n";
+    print "            <td>Correo:</td>\n";
+    print "            <td><input type=\"text\" name=\"correo\" size=\"$cfg[formempleadosTamCorreo]\" maxlength=\"$cfg[formempleadosTamCorreo]\"></td>\n";
+    print "          </tr>\n";
+    print "          <tr>\n";
+    print "            <td>RFID:</td>\n";
+    print "            <td><input type=\"text\" name=\"RFID\" size=\"$cfg[formempleadosTamRFID]\" value=\"$_SESSION[scan]\" placeholder=\"$_SESSION[scan]\" maxlength=\"$cfg[formempleadosTamRFID]\"></td>\n";
+    print "          </tr>\n";
+    print "        </tbody>\n";
+    print "      </table>\n";
     print "\n";
-} else {
-    $apellidosOk = true;
-}
-
-if (mb_strlen($telefono, "UTF-8") > $cfg["dbempleadosTamTelefono"]) {
-    print "    <p class=\"aviso\">El teléfono no puede tener más de $cfg[dbempleadosTamTelefono] caracteres.</p>\n";
-    print "\n";
-} else {
-    $telefonoOk = true;
-}
-
-if (mb_strlen($correo, "UTF-8") > $cfg["dbempleadosTamCorreo"]) {
-    print "    <p class=\"aviso\">El correo no puede tener más de $cfg[dbempleadosTamCorreo] caracteres.</p>\n";
-    print "\n";
-} else {
-    $correoOk = true;
-}
-
-if ($nombre == "" && $apellidos == "" && $telefono == "" && $correo == "" && $RFID == "") {
-    print "    <p class=\"aviso\">Hay que rellenar al menos uno de los campos. No se ha guardado el registro.</p>\n";
-    print "\n";
-    $nombreOk = $apellidosOk = $telefonoOk = $correoOk = $RFIDOk = false;
-}
-
-if ($nombreOk && $apellidosOk && $telefonoOk && $correoOk && $RFIDOk) {
-    $consulta = "SELECT COUNT(*) FROM $cfg[dbempleadosTabla]
-                 WHERE nombre = :nombre
-                 AND apellidos = :apellidos
-                 AND telefono = :telefono
-                 AND correo = :correo
-                 AND RFID = :RFID";
-
-    $resultado = $pdo->prepare($consulta);
-    if (!$resultado) {
-        print "    <p class=\"aviso\">Error al preparar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } elseif (!$resultado->execute([":nombre" => $nombre, ":apellidos" => $apellidos, ":telefono" => $telefono, ":correo" => $correo,  ":RFID" => $RFID])) {
-        print "    <p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } elseif ($resultado->fetchColumn() > 0) {
-        print "    <p class=\"aviso\">El registro ya existe.</p>\n";
-    } else {
-        $consulta = "SELECT COUNT(*) FROM $cfg[dbempleadosTabla]";
-
-        $resultado = $pdo->query($consulta);
-        if (!$resultado) {
-            print "    <p class=\"aviso\">Error en la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-        } elseif ($resultado->fetchColumn() >= $cfg["dbempleadosMaxReg"]) {
-            print "    <p class=\"aviso\">Se ha alcanzado el número máximo de registros que se pueden guardar.</p>\n";
-            print "\n";
-            print "    <p class=\"aviso\">Por favor, borre algún registro antes de insertar un nuevo registro.</p>\n";
-        } else {
-            $consulta = "INSERT INTO $cfg[dbempleadosTabla]
-                         (nombre, apellidos, telefono, correo, RFID)
-                         VALUES (:nombre, :apellidos, :telefono, :correo, :RFID)";
-
-            $resultado = $pdo->prepare($consulta);
-            if (!$resultado) {
-                print "    <p class=\"aviso\">Error al preparar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-            } elseif (!$resultado->execute([":nombre" => $nombre, ":apellidos" => $apellidos, ":telefono" => $telefono, ":correo" => $correo, ":RFID" => $RFID])) {
-                print "    <p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-            } else {
-                print "    <p>Registro creado correctamente.</p>\n";
-            }
-        }
-    }
+    print "      <p>\n";
+    print "        <input type=\"submit\" value=\"Añadir\">\n";
+    print "        <input type=\"reset\" value=\"Reiniciar formulario\">\n";
+    print "      </p>\n";
+    print "    </form>\n";
 }
 
 $pdo = null;

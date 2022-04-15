@@ -168,7 +168,7 @@ function cabecera($texto, $menu, $profundidadDirectorio)
             print "        <li><a href=\"modificar-1.php\">Modificar</a></li>\n";
         } elseif ($menu == MENU_empleados) {
             print "        <li><a href=\"../../index.php\">Volver</a></li>\n";
-            print "        <li><a href=\"scan.php\">Añadir registro</a></li>\n";
+            print "        <li><a href=\"insertar-1.php\">Añadir registro</a></li>\n";
             print "        <li><a href=\"listar.php\">Listar</a></li>\n";
             print "        <li><a href=\"borrar-1.php\">Borrar</a></li>\n";
             print "        <li><a href=\"buscar-1.php\">Buscar</a></li>\n";
