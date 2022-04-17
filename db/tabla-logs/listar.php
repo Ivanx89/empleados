@@ -17,7 +17,7 @@ $pdo = conectaDb();
 
 cabecera("LOGS - Listar", MENU_empleados, PROFUNDIDAD_2);
 
-$ordena = recogeValores("ordena", $cfg["dblogsColumnasOrden"], "nombre ASC");
+$ordena = recogeValores("ordena", $cfg["dblogsColumnasOrden"], "Hora DESC");
 
 $consulta = "SELECT * FROM $cfg[dblogsTabla]
              ORDER BY $ordena";

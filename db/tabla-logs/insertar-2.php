@@ -19,8 +19,8 @@ cabecera("empleados - Añadir 2", MENU_empleados, PROFUNDIDAD_2);
 
 $nombre    = recoge("nombre");
 $apellidos = recoge("apellidos");
-$RFID    = recoge("RFID");
-$Hora       = recoge("Hora");
+$RFID      = recoge("RFID");
+$Hora      = recoge("Hora");
 
 $nombreOk    = false;
 $apellidosOk = false;
@@ -55,24 +55,10 @@ if (mb_strlen($apellidos, "UTF-8") > $cfg["dbempleadosTamApellidos"]) {
     $apellidosOk = true;
 }
 
-if (mb_strlen($telefono, "UTF-8") > $cfg["dbempleadosTamTelefono"]) {
-    print "    <p class=\"aviso\">El teléfono no puede tener más de $cfg[dbempleadosTamTelefono] caracteres.</p>\n";
-    print "\n";
-} else {
-    $telefonoOk = true;
-}
-
-if (mb_strlen($correo, "UTF-8") > $cfg["dbempleadosTamCorreo"]) {
-    print "    <p class=\"aviso\">El correo no puede tener más de $cfg[dbempleadosTamCorreo] caracteres.</p>\n";
-    print "\n";
-} else {
-    $correoOk = true;
-}
-
 if ($nombre == "" && $apellidos == "" && $RFID == "" && $Hora == "") {
     print "    <p class=\"aviso\">Hay que rellenar al menos uno de los campos. No se ha guardado el registro.</p>\n";
     print "\n";
-    $nombreOk = $apellidosOk = $telefonoOk = $correoOk = $HoraOk = $RFIDOk = false;
+    $nombreOk = $apellidosOk = $HoraOk = $RFIDOk = false;
 }
 
 if ($nombreOk && $apellidosOk && $RFIDOk && $HoraOk) {
