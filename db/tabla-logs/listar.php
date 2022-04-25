@@ -38,12 +38,18 @@ if (!$resultado) {
 } elseif (!count($registros = $resultado->fetchAll())) {
     print "    <p class=\"aviso\">No se ha creado todavía ningún registro.</p>\n";
 } else {
-    print "<ul>";
-    print "<li><a href=\"listar.php\">Todo</a></li>";
-    print "<li><a href=\"listar.php?filtro=semana\">Semana</a></li>";
-    print "<li><a href=\"listar.php?filtro=mes\">Mes</a></li>";
-    print "<li><a href=\"listar.php?filtro=ano\">Año</a></li>";
-    print "</ul>";
+    print " <form action=\"filtrar.php\" method=\"post\"> ";
+    print " <label>Año<label/>";
+    print " <input type=\"radio\" name=\"filtrar\" value=\"ano\"/><br>";
+    print " <label>Semana<label/>";
+    print " <input type=\"radio\" name=\"filtrar\" value=\"semana\"/><br>";
+    print " <label>Mes<label/>";
+    print " <input type=\"radio\" name=\"filtrar\" value=\"mes\"/><br>";
+    print " <label>Todo<label/>";
+    print " <input type=\"radio\" name=\"filtrar\" value=\"todo\"/><br>";
+    print " <input type=\"submit\" name=\"boton\" value=\"Listar\"/>";
+    print "</form>";
+
     print "    <p>Listado completo de registros:</p>\n";
     print "\n";
     print "    <form action=\"$_SERVER[PHP_SELF]\" method=\"$cfg[formMethod]\">\n";
