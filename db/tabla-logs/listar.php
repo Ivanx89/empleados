@@ -19,8 +19,18 @@ cabecera("LOGS - Listar", MENU_empleados, PROFUNDIDAD_2);
 
 $ordena = recogeValores("ordena", $cfg["dblogsColumnasOrden"], "Hora DESC");
 
-$consulta = "SELECT * FROM $cfg[dblogsTabla]
+$filtro = $_GET["filtro"];
+
+if ($filtro == "") {
+    $consulta = "SELECT * FROM $cfg[dblogsTabla]
              ORDER BY $ordena";
+}elseif ($filtro == "semana") {
+    $consulta = "SELECT * FROM $cfg[dblogsTabla] WHERE Fecha >= CURDATE() - INTERVAL 7 DAY ORDER BY $ordena;";
+}elseif ($filtro == "mes") {
+    $consulta = "SELECT * FROM $cfg[dblogsTabla] WHERE Fecha >= CURDATE() - INTERVAL 1 MONTH ORDER BY $ordena;";;
+}elseif ($filtro == "ano") {
+    $consulta = "SELECT * FROM $cfg[dblogsTabla] WHERE Fecha >= CURDATE() - INTERVAL 1 YEAR ORDER BY $ordena;";;
+}
 
 $resultado = $pdo->query($consulta);
 if (!$resultado) {
@@ -28,6 +38,12 @@ if (!$resultado) {
 } elseif (!count($registros = $resultado->fetchAll())) {
     print "    <p class=\"aviso\">No se ha creado todavía ningún registro.</p>\n";
 } else {
+    print "<ul>";
+    print "<li><a href=\"listar.php\">Todo</a></li>";
+    print "<li><a href=\"listar.php?filtro=semana\">Semana</a></li>";
+    print "<li><a href=\"listar.php?filtro=mes\">Mes</a></li>";
+    print "<li><a href=\"listar.php?filtro=ano\">Año</a></li>";
+    print "</ul>";
     print "    <p>Listado completo de registros:</p>\n";
     print "\n";
     print "    <form action=\"$_SERVER[PHP_SELF]\" method=\"$cfg[formMethod]\">\n";
@@ -70,6 +86,15 @@ if (!$resultado) {
     print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
     print "              </button>\n";
     print "            </th>\n";
+    print "            <th>\n";
+    print "              <button name=\"ordena\" value=\"Fecha ASC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/abajo.svg\" alt=\"A-Z\" title=\"A-Z\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "              Fecha\n";
+    print "              <button name=\"ordena\" value=\"Fecha DESC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "            </th>\n";
     print "          </tr>\n";
     print "        </thead>\n";
     print "        <tbody>\n";
@@ -79,6 +104,7 @@ if (!$resultado) {
         print "            <td>$registro[apellidos]</td>\n";
         print "            <td>$registro[RFID]</td>\n";
         print "            <td>$registro[Hora]</td>\n";
+        print "            <td>$registro[Fecha]</td>\n";
         print "          </tr>\n";
     }
     print "        </tbody>\n";
