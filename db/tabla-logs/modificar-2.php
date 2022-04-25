@@ -54,6 +54,10 @@ if ($id == "") {
         print "            <td>Hora:</td>\n";
         print "            <td><input type=\"time\" name=\"Hora\" size=\"$cfg[formlogsTamHora]\" maxlength=\"$cfg[formlogsTamHora]\" value=\"$registro[Hora]\"></td>\n";
         print "          </tr>\n";
+        print "          <tr>\n";
+        print "            <td>Fecha:</td>\n";
+        print "            <td><input type=\"date\" name=\"Fecha\" value=\"$registro[Fecha]\"></td>\n";
+        print "          </tr>\n";
         print "        </tbody>\n";
         print "      </table>\n";
         print "\n";
