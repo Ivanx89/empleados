@@ -51,6 +51,7 @@ $cfg["formempleadosTamTelefono"]  = $cfg["dbempleadosTamTelefono"];   // Tamaño
 $cfg["formempleadosTamCorreo"]    = $cfg["dbempleadosTamCorreo"];     // Tamaño de la caja de texto empleados > Correo
 $cfg["formempleadosTamRFID"]      = $cfg["dbempleadosTamRFID"];     // Tamaño de la caja de texto empleados > Correo
 $cfg["formlogsTamHora"]           = $cfg["dblogsTamHora"];     // Tamaño de la caja de texto empleados > Correo
+
 // Número máximo de registros en las tablas
 
 $cfg["dbUsuariosMaxReg"] = 20;                              // Número máximo de registros en la tabla Usuarios

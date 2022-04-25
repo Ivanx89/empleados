@@ -48,6 +48,10 @@ if (!$resultado) {
     print "            <td>Hora:</td>\n";
     print "            <td><input type=\"time\" name=\"Hora\" size=\"$cfg[formlogsTamHora]\" maxlength=\"$cfg[formlogsTamHora]\"></td>\n";
     print "          </tr>\n";
+    print "          <tr>\n";
+    print "            <td>Fecha:</td>\n";
+    print "            <td><input type=\"date\" name=\"Fecha\" </td>\n";
+    print "          </tr>\n";
     print "        </tbody>\n";
     print "      </table>\n";
     print "\n";

@@ -107,6 +107,7 @@ function borraTodo()
                      apellidos VARCHAR($cfg[dbempleadosTamApellidos]),
                      RFID VARCHAR($cfg[dbempleadosTamRFID]),
                      Hora TIME($cfg[dblogsTamHora]),
+                     Fecha DATE,
                      PRIMARY KEY(id)
                      )";
 
