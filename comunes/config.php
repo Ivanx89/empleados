@@ -41,7 +41,8 @@ $cfg["dbempleadosTamApellidos"] = 60;                        // Tamaño de la co
 $cfg["dbempleadosTamTelefono"]  = 10;                        // Tamaño de la columna empleados > Teléfono
 $cfg["dbempleadosTamCorreo"]    = 50;                        // Tamaño de la columna empleados > Correo
 $cfg["dbempleadosTamRFID"]    = 50;                        // Tamaño de la columna empleados > Correo
-$cfg["dblogsTamHora"]    = 6;                        // Tamaño de la columna empleados > Correo
+$cfg["dblogsTamHoraEntrada"]    = 6;                        // Tamaño de la columna empleados > Correo
+$cfg["dblogsTamHoraSalida"]    = 6;                        // Tamaño de la columna empleados > Correo
 
 // Tamaño de los controles en los formularios
 

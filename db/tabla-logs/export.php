@@ -15,7 +15,8 @@ if(isset($_POST["export"]))
                          <th>nombre</th>  
                          <th>apellidos</th>  
                           <th>RFID</th>
-                          <th>Hora</th>
+                          <th>Hora Entrada</th>
+                          <th>Hora Salida</th>
                           <th>Fecha</th>
                     </tr>
   ';
@@ -27,7 +28,8 @@ if(isset($_POST["export"]))
        <td>'.$row["nombre"].'</td>  
        <td>'.$row["apellidos"].'</td>  
        <td>'.$row["RFID"].'</td>  
-       <td>'.$row["Hora"].'</td>
+       <td>'.$row["HoraEntrada"].'</td>
+       <td>'.$row["HoraSalida"].'</td>
        <td>'.$row["Fecha"].'</td>
      </tr>
    ';

@@ -45,8 +45,12 @@ if (!$resultado) {
     print "            <td><input type=\"text\" name=\"RFID\" size=\"$cfg[formempleadosTamRFID]\" maxlength=\"$cfg[formempleadosTamRFID]\"></td>\n";
     print "          </tr>\n";
     print "          <tr>\n";
-    print "            <td>Hora:</td>\n";
-    print "            <td><input type=\"time\" name=\"Hora\" size=\"$cfg[formlogsTamHora]\" maxlength=\"$cfg[formlogsTamHora]\"></td>\n";
+    print "            <td>Hora Entrada:</td>\n";
+    print "            <td><input type=\"time\" name=\"HoraEntrada\" size=\"$cfg[formlogsTamHora]\" maxlength=\"$cfg[formlogsTamHora]\"></td>\n";
+    print "          </tr>\n";
+    print "          <tr>\n";
+    print "            <td>Hora Salida:</td>\n";
+    print "            <td><input type=\"time\" name=\"HoraSalida\" size=\"$cfg[formlogsTamHora]\" maxlength=\"$cfg[formlogsTamHora]\"></td>\n";
     print "          </tr>\n";
     print "          <tr>\n";
     print "            <td>Fecha:</td>\n";

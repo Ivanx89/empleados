@@ -64,11 +64,20 @@ if (!$resultado) {
     print "              </button>\n";
     print "            </th>\n";
     print "            <th>\n";
-    print "              <button name=\"ordena\" value=\"Hora ASC\" class=\"boton-invisible\">\n";
+    print "              <button name=\"ordena\" value=\"HoraEntrada ASC\" class=\"boton-invisible\">\n";
     print "                <img src=\"../../img/abajo.svg\" alt=\"A-Z\" title=\"A-Z\" width=\"15\" height=\"12\">\n";
     print "              </button>\n";
-    print "              Hora\n";
-    print "              <button name=\"ordena\" value=\"Hora DESC\" class=\"boton-invisible\">\n";
+    print "              Hora Entrada\n";
+    print "              <button name=\"ordena\" value=\"HoraEntrada DESC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "            </th>\n";
+    print "            <th>\n";
+    print "              <button name=\"ordena\" value=\"HoraSalida ASC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/abajo.svg\" alt=\"A-Z\" title=\"A-Z\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "              Hora Salida\n";
+    print "              <button name=\"ordena\" value=\"HoraSalida DESC\" class=\"boton-invisible\">\n";
     print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
     print "              </button>\n";
     print "            </th>\n";
@@ -94,7 +103,8 @@ if (!$resultado) {
         print "            <td>$registro[nombre]</td>\n";
         print "            <td>$registro[apellidos]</td>\n";
         print "            <td>$registro[RFID]</td>\n";
-        print "            <td>$registro[Hora]</td>\n";
+        print "            <td>$registro[HoraEntrada]</td>\n";
+        print "            <td>$registro[HoraSalida]</td>\n";
         print "            <td>$registro[Fecha]</td>\n";
         print "          </tr>\n";
     }

@@ -44,8 +44,9 @@ $cfg["dblogsColumnasOrden"] = [
     "nombre ASC", "nombre DESC",
     "apellidos ASC", "apellidos DESC",
     "RFID ASC", "RFID DESC",
-    "Hora ASC", "Hora DESC",
+    "HoraEntrada ASC", "HoraEntrada DESC",
     "Fecha ASC", "Fecha DESC",
+    "HoraSalida ASC", "HoraSalida DESC",
 ];
 
 // Niveles de usuario
