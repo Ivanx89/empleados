@@ -15,8 +15,8 @@ if(isset($_POST["export"]))
                          <th>nombre</th>  
                          <th>apellidos</th>  
                           <th>RFID</th>
-                          <th>Hora Entrada</th>
-                          <th>Hora Salida</th>
+                          <th>HoraEntrada</th>
+                          <th>HoraSalida</th>
                           <th>Fecha</th>
                     </tr>
   ';
