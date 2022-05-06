@@ -32,12 +32,46 @@ if (!count($registros = $resultado->fetchAll())) {
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-    echo "Connected successfully";
+    echo "Connected successfully<br>";
 
-    $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, Hora, Fecha) SELECT nombre, apellidos, RFID, CURRENT_TIME, CURRENT_DATE FROM empleados.empleados WHERE empleados.RFID = '$card';";
+    $sql = "SELECT * FROM empleados.logs WHERE RFID = '$card' AND Fecha = CURRENT_DATE;";
 
-    if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
+    if ($result = mysqli_query($conn, $sql)) {
+        $rowcount = mysqli_num_rows( $result );
+        printf("Total rows in this table : %d\n", $rowcount);
+        if ($rowcount == 0) {
+            $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, HoraEntrada, HoraSalida, Fecha) SELECT nombre, apellidos, RFID, CURRENT_TIME, NULL, CURRENT_DATE FROM empleados.empleados WHERE empleados.RFID = '$card';";
+            if ($result = mysqli_query($conn, $sql)) {
+                $rowcount = mysqli_num_rows( $result );
+            printf("Insert hecho, ahora hay : %d\n", $rowcount);
+            } else {
+                printf("Insert Error, ahora hay : %d\n", $rowcount);
+            }
+        }if ($rowcount > 0) {
+            $sql = "SELECT * FROM empleados.logs WHERE RFID = '$card' AND Fecha = CURRENT_DATE AND HoraSalida IS NULL;";
+            if ($result = mysqli_query($conn, $sql)) {
+                $rowcount = mysqli_num_rows( $result );
+                if ($rowcount > 0) {
+                    $sql = "UPDATE empleados.logs SET HoraSalida = CURRENT_TIME WHERE HoraSalida IS NULL;";
+                    if ($result = mysqli_query($conn, $sql)) {
+                        echo "hecho";
+                    }
+                } else {
+                    $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, HoraEntrada, HoraSalida, Fecha) SELECT nombre, apellidos, RFID, CURRENT_TIME, NULL, CURRENT_DATE FROM empleados.empleados WHERE empleados.RFID = '$card';";
+                    if ($result = mysqli_query($conn, $sql)) {
+                        $rowcount = mysqli_num_rows( $result );
+                    printf("Insert hecho, ahora hay : %d\n", $rowcount);
+                    } else {
+                        printf("Insert Error, ahora hay : %d\n", $rowcount);
+                    }
+                }
+            }
+
+        }else{
+                echo "INSERTADO NUEVO";
+
+    }
+        
     } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
