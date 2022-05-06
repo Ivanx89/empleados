@@ -38,7 +38,7 @@ if (!count($registros = $resultado->fetchAll())) {
 
     if ($result = mysqli_query($conn, $sql)) {
         $rowcount = mysqli_num_rows( $result );
-        printf("Total rows in this table : %d\n", $rowcount);
+        printf("Registro Nuevo", $rowcount);
         if ($rowcount == 0) {
             $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, HoraEntrada, HoraSalida, Fecha) SELECT nombre, apellidos, RFID, CURRENT_TIME, NULL, CURRENT_DATE FROM empleados.empleados WHERE empleados.RFID = '$card';";
             if ($result = mysqli_query($conn, $sql)) {
