@@ -52,7 +52,7 @@ if (!count($registros = $resultado->fetchAll())) {
             if ($result = mysqli_query($conn, $sql)) {
                 $rowcount = mysqli_num_rows( $result );
                 if ($rowcount > 0) {
-                    $sql = "UPDATE empleados.logs SET HoraSalida = CURRENT_TIME WHERE RFID = '$card' AND HoraSalida IS NULL;";
+                    $sql = "UPDATE empleados.logs SET HoraSalida = CURRENT_TIME WHERE RFID = '$card' AND Fecha = CURRENT_DATE AND HoraSalida IS NULL;";
                     if ($result = mysqli_query($conn, $sql)) {
                         echo "Update HoraSalida hecho";
                     }
