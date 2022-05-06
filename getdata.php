@@ -43,9 +43,9 @@ if (!count($registros = $resultado->fetchAll())) {
             $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, HoraEntrada, HoraSalida, Fecha) SELECT nombre, apellidos, RFID, CURRENT_TIME, NULL, CURRENT_DATE FROM empleados.empleados WHERE empleados.RFID = '$card';";
             if ($result = mysqli_query($conn, $sql)) {
                 $rowcount = mysqli_num_rows( $result );
-            printf("Insert hecho, ahora hay : %d\n", $rowcount);
+            printf("Insert hecho");
             } else {
-                printf("Insert Error, ahora hay : %d\n", $rowcount);
+                printf("Insert Error");
             }
         }if ($rowcount > 0) {
             $sql = "SELECT * FROM empleados.logs WHERE RFID = '$card' AND Fecha = CURRENT_DATE AND HoraSalida IS NULL;";
@@ -54,15 +54,15 @@ if (!count($registros = $resultado->fetchAll())) {
                 if ($rowcount > 0) {
                     $sql = "UPDATE empleados.logs SET HoraSalida = CURRENT_TIME WHERE HoraSalida IS NULL;";
                     if ($result = mysqli_query($conn, $sql)) {
-                        echo "hecho";
+                        echo "Update HoraSalida hecho";
                     }
                 } else {
                     $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, HoraEntrada, HoraSalida, Fecha) SELECT nombre, apellidos, RFID, CURRENT_TIME, NULL, CURRENT_DATE FROM empleados.empleados WHERE empleados.RFID = '$card';";
                     if ($result = mysqli_query($conn, $sql)) {
                         $rowcount = mysqli_num_rows( $result );
-                    printf("Insert hecho, ahora hay : %d\n", $rowcount);
+                    printf("Insert Nuevo hecho");
                     } else {
-                        printf("Insert Error, ahora hay : %d\n", $rowcount);
+                        printf("Insert Nuevo Error");
                     }
                 }
             }
