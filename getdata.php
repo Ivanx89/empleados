@@ -9,7 +9,6 @@ session_name($cfg["sessionName"]);
 session_start();
 
 $card = recoge("card"); 
-$_SESSION['scan'] = $card;
 
 $pdo = conectaDb();
 
@@ -17,7 +16,26 @@ $consulta = "SELECT * FROM $cfg[dbempleadosTabla] WHERE RFID = '$card'";
 
 $resultado = $pdo->query($consulta);
 if (!count($registros = $resultado->fetchAll())) {
-   echo "Sent to admin $_SESSION[scan]" ;
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password);
+
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    echo "Connected successfully<br>";
+
+    $sql = "INSERT INTO empleados.tmp VALUES ('$card');";
+
+    if ($result = mysqli_query($conn, $sql)) {
+        echo "Empleado enviado para su creación";
+    } else {
+        printf("Insert Error");
+        }
 } else {
     print "    <p>Ya existía ese registro $card.</p>\n";
 

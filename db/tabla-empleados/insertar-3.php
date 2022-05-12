@@ -17,6 +17,8 @@ $pdo = conectaDb();
 
 cabecera("empleados - Añadir 2", MENU_empleados, PROFUNDIDAD_2);
 
+$_SESSION["tarjeta"] = '';
+
 $nombre    = recoge("nombre");
 $apellidos = recoge("apellidos");
 $telefono  = recoge("telefono");
@@ -111,6 +113,27 @@ if ($nombreOk && $apellidosOk && $telefonoOk && $correoOk && $RFIDOk) {
         }
     }
 }
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password);
+
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    echo "Connected successfully<br>";
+
+    $sql = "TRUNCATE TABLE empleados.tmp;";
+
+    if ($result = mysqli_query($conn, $sql)) {
+            echo "Tabla tmp truncada";
+            } else {
+                printf("Truncate Error");
+            }
 
 $pdo = null;
 

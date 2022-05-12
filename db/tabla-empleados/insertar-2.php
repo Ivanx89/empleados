@@ -13,6 +13,8 @@ if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_USUARIO_BASICO)
     exit;
 }
 
+
+$tarjeta = $_SESSION['tarjeta'];
 $pdo = conectaDb();
 
 cabecera("Empleados - Añadir 1", MENU_empleados, PROFUNDIDAD_2);
@@ -50,7 +52,7 @@ if (!$resultado) {
     print "          </tr>\n";
     print "          <tr>\n";
     print "            <td>RFID:</td>\n";
-    print "            <td><input type=\"text\" name=\"RFID\" size=\"$cfg[formempleadosTamRFID]\" value=\"$_SESSION[scan]\" placeholder=\"$_SESSION[scan]\" maxlength=\"$cfg[formempleadosTamRFID]\"></td>\n";
+    print "            <td><input type=\"text\" name=\"RFID\" size=\"$cfg[formempleadosTamRFID]\" value=\"$_SESSION[tarjeta]\" placeholder=\"$_SESSION[tarjeta]\" maxlength=\"$cfg[formempleadosTamRFID]\"></td>\n";
     print "          </tr>\n";
     print "        </tbody>\n";
     print "      </table>\n";

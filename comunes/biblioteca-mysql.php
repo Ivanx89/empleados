@@ -9,7 +9,8 @@
 
 $cfg["dbempleadosTabla"] = "$cfg[mysqlDatabase].empleados";   // Nombre de la tabla empleados
 $cfg["dbUsuariosTabla"] = "$cfg[mysqlDatabase].usuarios";   // Nombre de la tabla Usuarios
-$cfg["dblogsTabla"] = "$cfg[mysqlDatabase].logs";   // Nombre de la tabla Usuarios
+$cfg["dblogsTabla"] = "$cfg[mysqlDatabase].logs";   // Nombre de la tabla Logs
+$cfg["dbtmpTabla"] = "$cfg[mysqlDatabase].tmp";   // Nombre de la tabla tmp
 
 // MYSQL: Conexión con la base de datos
 
@@ -116,6 +117,20 @@ function borraTodo()
             print "    <p class=\"aviso\">Error al crear la tabla logs. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
         } else {
             print "    <p>Tabla logs creada correctamente.</p>\n";
+        }
+
+
+        print "\n";
+
+        $consulta = "CREATE TABLE $cfg[dbtmpTabla]  (
+                     card VARCHAR($cfg[dbempleadosTamNombre]),
+                     PRIMARY KEY(card)
+                     )";
+
+        if (!$pdo->query($consulta)) {
+            print "    <p class=\"aviso\">Error al crear la tabla logs. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
+        } else {
+            print "    <p>Tabla tmp creada correctamente.</p>\n";
         }
     }
 }
