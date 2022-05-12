@@ -6,12 +6,12 @@
 
 MFRC522 mfrc522(SS_PIN, RST_PIN); 
 
-char ssid[] = "MiFibra-5210-24G";
-char pass[] = "a6EDVWpM";
+char ssid[] = "";
+char pass[] = "";
 
 int status = WL_IDLE_STATUS;
 
-char server[] = "192.168.1.15";
+char server[] = "";
 
 String postData;
 String postVariable = "card=";
@@ -86,7 +86,7 @@ void loop()
     client.print(" ");      //SPACE BEFORE HTTP/1.1
     client.print("HTTP/1.1");
     client.println();
-    client.println("Host: 192.168.1.15");
+    client.println("Host: ");
     client.println("Connection: close");
     client.println();
   } else {
