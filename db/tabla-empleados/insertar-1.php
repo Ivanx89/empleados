@@ -30,7 +30,7 @@ print "        </tbody>\n";
 print "      </table>\n";
 print "\n";
 print "      <p>\n";
-print "        <input type=\"submit\" value=\"Añadir\">\n";
+print "        <input type=\"submit\" value=\"Continuar\">\n";
 print "        <input type=\"reset\" value=\"Reiniciar formulario\">\n";
 print "      </p>\n";
 print "    </form>\n";

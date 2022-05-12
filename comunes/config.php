@@ -13,10 +13,6 @@ $cfg["sessionName"] = "empleados";       // Nombre de sesión
 
 $cfg["dbMotor"] = MYSQL;                                   // Valores posibles: MYSQL o SQLITE
 
-// Configuración para SQLite
-
-$cfg["sqliteDatabase"] = "/tmp/mclibre-base-datos-3-b-0.sqlite";    // Ubicación de la base de datos
-
 // Configuración para MySQL
 
 $cfg["mysqlHost"]     = "mysql:host=localhost";             // Nombre de host
