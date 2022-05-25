@@ -17,10 +17,20 @@ $pdo = conectaDb();
 
 cabecera("LOGS - Listar", MENU_empleados, PROFUNDIDAD_2);
 
-$ordena = recogeValores("ordena", $cfg["dblogsColumnasOrden"], "nombre ASC");
+$ordena = recogeValores("ordena", $cfg["dblogsColumnasOrden"], "HoraEntrada DESC");
 
-$consulta = "SELECT * FROM $cfg[dblogsTabla]
+$filtro = $_GET["filtro"];
+
+if ($filtro == "") {
+    $consulta = "SELECT * FROM $cfg[dblogsTabla]
              ORDER BY $ordena";
+}elseif ($filtro == "semana") {
+    $consulta = "SELECT * FROM $cfg[dblogsTabla] WHERE Fecha >= CURDATE() - INTERVAL 7 DAY ORDER BY $ordena;";
+}elseif ($filtro == "mes") {
+    $consulta = "SELECT * FROM $cfg[dblogsTabla] WHERE Fecha >= CURDATE() - INTERVAL 1 MONTH ORDER BY $ordena;";;
+}elseif ($filtro == "ano") {
+    $consulta = "SELECT * FROM $cfg[dblogsTabla] WHERE Fecha >= CURDATE() - INTERVAL 1 YEAR ORDER BY $ordena;";;
+}
 
 $resultado = $pdo->query($consulta);
 if (!$resultado) {
@@ -28,6 +38,18 @@ if (!$resultado) {
 } elseif (!count($registros = $resultado->fetchAll())) {
     print "    <p class=\"aviso\">No se ha creado todavía ningún registro.</p>\n";
 } else {
+    print " <form action=\"filtrar.php\" method=\"post\"> ";
+    print " <label>Año<label/>";
+    print " <input type=\"radio\" name=\"filtrar\" value=\"ano\"/><br>";
+    print " <label>Semana<label/>";
+    print " <input type=\"radio\" name=\"filtrar\" value=\"semana\"/><br>";
+    print " <label>Mes<label/>";
+    print " <input type=\"radio\" name=\"filtrar\" value=\"mes\"/><br>";
+    print " <label>Todo<label/>";
+    print " <input type=\"radio\" name=\"filtrar\" value=\"todo\"/><br>";
+    print " <input type=\"submit\" name=\"boton\" value=\"Listar\"/>";
+    print "</form>";
+
     print "    <p>Listado completo de registros:</p>\n";
     print "\n";
     print "    <form action=\"$_SERVER[PHP_SELF]\" method=\"$cfg[formMethod]\">\n";
@@ -62,11 +84,29 @@ if (!$resultado) {
     print "              </button>\n";
     print "            </th>\n";
     print "            <th>\n";
-    print "              <button name=\"ordena\" value=\"Hora ASC\" class=\"boton-invisible\">\n";
+    print "              <button name=\"ordena\" value=\"HoraEntrada ASC\" class=\"boton-invisible\">\n";
     print "                <img src=\"../../img/abajo.svg\" alt=\"A-Z\" title=\"A-Z\" width=\"15\" height=\"12\">\n";
     print "              </button>\n";
-    print "              Hora\n";
-    print "              <button name=\"ordena\" value=\"Hora DESC\" class=\"boton-invisible\">\n";
+    print "              Hora Entrada\n";
+    print "              <button name=\"ordena\" value=\"HoraEntrada DESC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "            </th>\n";
+    print "            <th>\n";
+    print "              <button name=\"ordena\" value=\"HoraSalida ASC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/abajo.svg\" alt=\"A-Z\" title=\"A-Z\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "              Hora Salida\n";
+    print "              <button name=\"ordena\" value=\"HoraSalida DESC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "            </th>\n";
+    print "            <th>\n";
+    print "              <button name=\"ordena\" value=\"Fecha ASC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/abajo.svg\" alt=\"A-Z\" title=\"A-Z\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "              Fecha\n";
+    print "              <button name=\"ordena\" value=\"Fecha DESC\" class=\"boton-invisible\">\n";
     print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
     print "              </button>\n";
     print "            </th>\n";
@@ -78,7 +118,9 @@ if (!$resultado) {
         print "            <td>$registro[nombre]</td>\n";
         print "            <td>$registro[apellidos]</td>\n";
         print "            <td>$registro[RFID]</td>\n";
-        print "            <td>$registro[Hora]</td>\n";
+        print "            <td>$registro[HoraEntrada]</td>\n";
+        print "            <td>$registro[HoraSalida]</td>\n";
+        print "            <td>$registro[Fecha]</td>\n";
         print "          </tr>\n";
     }
     print "        </tbody>\n";

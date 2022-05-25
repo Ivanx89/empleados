@@ -20,20 +20,24 @@ cabecera("Logs - Buscar 2", MENU_empleados, PROFUNDIDAD_2);
 $nombre    = recoge("nombre");
 $apellidos = recoge("apellidos");
 $RFID    = recoge("RFID");
-$Hora    = recoge("Hora");
+$HoraEntrada    = recoge("HoraEntrada");
+$HoraSalida    = recoge("HoraEntrada");
+$Fecha    = recoge("Fecha");
 $ordena    = recogeValores("ordena", $cfg["dblogsColumnasOrden"], "nombre ASC");
 
 $consulta = "SELECT * FROM $cfg[dblogsTabla]
              WHERE nombre LIKE :nombre
              AND apellidos LIKE :apellidos
-             AND Hora LIKE :Hora
+             AND HoraEntrada LIKE :HoraEntrada
+             AND HoraSalida LIKE :HoraSalida
+             AND Fecha LIKE :Fecha
              AND RFID LIKE :RFID
              ORDER BY $ordena";
 
 $resultado = $pdo->prepare($consulta);
 if (!$resultado) {
     print "    <p class=\"aviso\">Error al preparar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-} elseif (!$resultado->execute([":nombre" => "%$nombre%", ":apellidos" => "%$apellidos%",":RFID" => "%$RFID%", ":Hora" => "%$Hora%"])) {
+} elseif (!$resultado->execute([":nombre" => "%$nombre%", ":apellidos" => "%$apellidos%",":RFID" => "%$RFID%", ":Fecha" => "%$Fecha%", ":HoraSalida" => "%$HoraSalida%", ":HoraEntrada" => "%$HoraEntrada%"])) {
     print "    <p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
 } elseif (!count($registros = $resultado->fetchAll())) {
     print "    <p class=\"aviso\">No se han encontrado registros.</p>\n";
@@ -43,7 +47,9 @@ if (!$resultado) {
     print "        <input type=\"hidden\" name=\"nombre\" value=\"$nombre\">\n";
     print "        <input type=\"hidden\" name=\"apellidos\" value=\"$apellidos\">\n";
     print "        <input type=\"hidden\" name=\"RFID\" value=\"$RFID\">\n";
-    print "        <input type=\"hidden\" name=\"RFID\" value=\"$Hora\">\n";
+    print "        <input type=\"hidden\" name=\"HoraEntrada\" value=\"$HoraEntrada\">\n";
+    print "        <input type=\"hidden\" name=\"HoraSalida\" value=\"$HoraSalida\">\n";
+    print "        <input type=\"hidden\" name=\"Fecha\" value=\"$Fecha\">\n";
     print "      </p>\n";
     print "\n";
     print "      <p>Registros encontrados:</p>\n";
@@ -79,11 +85,29 @@ if (!$resultado) {
     print "              </button>\n";
     print "            </th>\n";
     print "            <th>\n";
-    print "              <button name=\"ordena\" value=\"Hora ASC\" class=\"boton-invisible\">\n";
+    print "              <button name=\"ordena\" value=\"HoraEntrada ASC\" class=\"boton-invisible\">\n";
     print "                <img src=\"../../img/abajo.svg\" alt=\"A-Z\" title=\"A-Z\" width=\"15\" height=\"12\">\n";
     print "              </button>\n";
-    print "              Hora\n";
-    print "              <button name=\"ordena\" value=\"Hora DESC\" class=\"boton-invisible\">\n";
+    print "              Hora Entrada\n";
+    print "              <button name=\"ordena\" value=\"HoraEntrada DESC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "            </th>\n";
+    print "            <th>\n";
+    print "              <button name=\"ordena\" value=\"HoraSalida ASC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/abajo.svg\" alt=\"A-Z\" title=\"A-Z\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "              Hora Salida\n";
+    print "              <button name=\"ordena\" value=\"HoraSalida DESC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "            </th>\n";
+    print "            <th>\n";
+    print "              <button name=\"ordena\" value=\"Fecha ASC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/abajo.svg\" alt=\"A-Z\" title=\"A-Z\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "              Fecha\n";
+    print "              <button name=\"ordena\" value=\"Fecha DESC\" class=\"boton-invisible\">\n";
     print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
     print "              </button>\n";
     print "            </th>\n";
@@ -95,7 +119,9 @@ if (!$resultado) {
         print "            <td>$registro[nombre]</td>\n";
         print "            <td>$registro[apellidos]</td>\n";
         print "            <td>$registro[RFID]</td>\n";
-        print "            <td>$registro[Hora]</td>\n";
+        print "            <td>$registro[HoraEntrada]</td>\n";
+        print "            <td>$registro[HoraSalida]</td>\n";
+        print "            <td>$registro[Fecha]</td>\n";
         print "          </tr>\n";
     }
     print "        </tbody>\n";

@@ -14,8 +14,10 @@ if(isset($_POST["export"]))
                          <th>id</th>  
                          <th>nombre</th>  
                          <th>apellidos</th>  
-       <th>RFID</th>
-       <th>Hora</th>
+                          <th>RFID</th>
+                          <th>HoraEntrada</th>
+                          <th>HoraSalida</th>
+                          <th>Fecha</th>
                     </tr>
   ';
   while($row = mysqli_fetch_array($result))
@@ -26,7 +28,9 @@ if(isset($_POST["export"]))
        <td>'.$row["nombre"].'</td>  
        <td>'.$row["apellidos"].'</td>  
        <td>'.$row["RFID"].'</td>  
-       <td>'.$row["Hora"].'</td>
+       <td>'.$row["HoraEntrada"].'</td>
+       <td>'.$row["HoraSalida"].'</td>
+       <td>'.$row["Fecha"].'</td>
      </tr>
    ';
   }

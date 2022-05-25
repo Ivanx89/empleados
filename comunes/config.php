@@ -13,10 +13,6 @@ $cfg["sessionName"] = "empleados";       // Nombre de sesión
 
 $cfg["dbMotor"] = MYSQL;                                   // Valores posibles: MYSQL o SQLITE
 
-// Configuración para SQLite
-
-$cfg["sqliteDatabase"] = "/tmp/mclibre-base-datos-3-b-0.sqlite";    // Ubicación de la base de datos
-
 // Configuración para MySQL
 
 $cfg["mysqlHost"]     = "mysql:host=localhost";             // Nombre de host
@@ -41,7 +37,8 @@ $cfg["dbempleadosTamApellidos"] = 60;                        // Tamaño de la co
 $cfg["dbempleadosTamTelefono"]  = 10;                        // Tamaño de la columna empleados > Teléfono
 $cfg["dbempleadosTamCorreo"]    = 50;                        // Tamaño de la columna empleados > Correo
 $cfg["dbempleadosTamRFID"]    = 50;                        // Tamaño de la columna empleados > Correo
-$cfg["dblogsTamHora"]    = 6;                        // Tamaño de la columna empleados > Correo
+$cfg["dblogsTamHoraEntrada"]    = 6;                        // Tamaño de la columna empleados > Correo
+$cfg["dblogsTamHoraSalida"]    = 6;                        // Tamaño de la columna empleados > Correo
 
 // Tamaño de los controles en los formularios
 
@@ -51,6 +48,7 @@ $cfg["formempleadosTamTelefono"]  = $cfg["dbempleadosTamTelefono"];   // Tamaño
 $cfg["formempleadosTamCorreo"]    = $cfg["dbempleadosTamCorreo"];     // Tamaño de la caja de texto empleados > Correo
 $cfg["formempleadosTamRFID"]      = $cfg["dbempleadosTamRFID"];     // Tamaño de la caja de texto empleados > Correo
 $cfg["formlogsTamHora"]           = $cfg["dblogsTamHora"];     // Tamaño de la caja de texto empleados > Correo
+
 // Número máximo de registros en las tablas
 
 $cfg["dbUsuariosMaxReg"] = 20;                              // Número máximo de registros en la tabla Usuarios

@@ -5,30 +5,37 @@
 
 require_once "./comunes/biblioteca.php";
 
-session_name("getdata");
+session_name($cfg["sessionName"]);
 session_start();
 
+$card = recoge("card"); 
 
 $pdo = conectaDb();
-$card = recoge("card"); 
+
 $consulta = "SELECT * FROM $cfg[dbempleadosTabla] WHERE RFID = '$card'";
 
 $resultado = $pdo->query($consulta);
 if (!count($registros = $resultado->fetchAll())) {
-    $insert = "INSERT INTO $cfg[dbempleadosTabla] (RFID) VALUES (:RFID)";
-    
-    print "    <p class=\"aviso\">INSERTADO</p>\n";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
 
-    $resultado = $pdo->prepare($insert);
-    if (!$resultado) {
-        print "    <p class=\"aviso\">Error al preparar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } elseif (!$resultado->execute([":RFID" => $card])) {
-        print "    <p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } else {
-        print "    <p>Registro creado correctamente.</p>\n";
-        
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password);
+
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
     }
-    
+    echo "Connected successfully<br>";
+
+    $sql = "INSERT INTO empleados.tmp VALUES ('$card');";
+
+    if ($result = mysqli_query($conn, $sql)) {
+        echo "Empleado enviado para su creación";
+    } else {
+        printf("Insert Error");
+        }
 } else {
     print "    <p>Ya existía ese registro $card.</p>\n";
 
@@ -43,17 +50,50 @@ if (!count($registros = $resultado->fetchAll())) {
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-    echo "Connected successfully";
+    echo "Connected successfully<br>";
 
-    $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, Hora) SELECT nombre, apellidos, RFID, CURRENT_TIMESTAMP FROM empleados.empleados WHERE empleados.RFID = '$card';";
+    $sql = "SELECT * FROM empleados.logs WHERE RFID = '$card' AND Fecha = CURRENT_DATE;";
 
-    if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
+    if ($result = mysqli_query($conn, $sql)) {
+        $rowcount = mysqli_num_rows( $result );
+        if ($rowcount == 0) {
+            echo "No hay registros de $card hoy";
+            $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, HoraEntrada, HoraSalida, Fecha) SELECT nombre, apellidos, RFID, CURRENT_TIME, NULL, CURRENT_DATE FROM empleados.empleados WHERE empleados.RFID = '$card';";
+            if ($result = mysqli_query($conn, $sql)) {
+                $rowcount = mysqli_num_rows( $result );
+            printf("Insert hecho");
+            } else {
+                printf("Insert Error");
+            }
+        }if ($rowcount > 0) { #SI HAY REGISTROS
+            $sql = "SELECT * FROM empleados.logs WHERE RFID = '$card' AND Fecha = CURRENT_DATE AND HoraSalida IS NULL;"; 
+            if ($result = mysqli_query($conn, $sql)) {
+                $rowcount = mysqli_num_rows( $result );
+                if ($rowcount > 0) {
+                    $sql = "UPDATE empleados.logs SET HoraSalida = CURRENT_TIME WHERE RFID = '$card' AND Fecha = CURRENT_DATE AND HoraSalida IS NULL;";
+                    if ($result = mysqli_query($conn, $sql)) {
+                        echo "Update HoraSalida hecho";
+                    }
+                } else {
+                    $sql = "INSERT INTO empleados.logs (nombre, apellidos, RFID, HoraEntrada, HoraSalida, Fecha) SELECT nombre, apellidos, RFID, CURRENT_TIME, NULL, CURRENT_DATE FROM empleados.empleados WHERE empleados.RFID = '$card';";
+                    if ($result = mysqli_query($conn, $sql)) {
+                        $rowcount = mysqli_num_rows( $result );
+                    printf("Insert Nuevo hecho");
+                    } else {
+                        printf("Insert Nuevo Error");
+                    }
+                }
+            }
+
+        }else{
+                echo "INSERTADO NUEVO";
+
+    }
+        
     } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
 
-session_destroy();
 mysqli_close($conn);
 $pdo = null;
