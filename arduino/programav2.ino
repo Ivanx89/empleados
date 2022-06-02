@@ -3,6 +3,7 @@
  
 #define SS_PIN 10
 #define RST_PIN 9
+int buzzer = 12;//the pin of the active buzzer
 
 MFRC522 mfrc522(SS_PIN, RST_PIN); 
 
@@ -20,11 +21,11 @@ WiFiClient client;
 
 void setup() 
 {
-  Serial.begin(9600);   // Initiate a serial communication
-  SPI.begin();      // Initiate  SPI bus
+  Serial.begin(9600);   
+  SPI.begin();      
   delay(4);
-  mfrc522.PCD_Init();   // Initiate MFRC522
- 
+  mfrc522.PCD_Init();   
+  pinMode(buzzer,OUTPUT);//initialize the buzzer pin as an output
 
   
   while (status != WL_CONNECTED) {
@@ -42,6 +43,12 @@ void setup()
   Serial.println(ip);
   Serial.println("Acerque la tarjeta...");
   Serial.println();
+  digitalWrite(buzzer,HIGH);
+  delay(5);//wait for 1ms
+  digitalWrite(buzzer,LOW);
+  delay(5);//wait for 1ms
+  digitalWrite(buzzer,HIGH);
+  digitalWrite(buzzer,LOW);
 
 }
 void loop() 
@@ -56,7 +63,7 @@ void loop()
   {
     return;
   }
-  //Show UID on serial monitor
+  
   String content= "";
   byte letter;
   for (byte i = 0; i < mfrc522.uid.size; i++) 
@@ -79,8 +86,11 @@ void loop()
    if (client.connect(server, 80)) {
     Serial.println("connected");
     // Make a HTTP request:
-    Serial.print("GET /empleados/getdata.php?");
-    client.print("GET /empleados/getdata.php?");     //YOUR URL
+    Serial.print("POST /empleados/getdata.php?");
+    client.print("POST /empleados/getdata.php?");    
+    digitalWrite(buzzer,HIGH);
+      delay(25);//wait for 1ms
+      digitalWrite(buzzer,LOW);
     Serial.println(postData);
     client.print(postData);
     client.print(" ");      //SPACE BEFORE HTTP/1.1
@@ -90,7 +100,7 @@ void loop()
     client.println("Connection: close");
     client.println();
   } else {
-    // if you didn't get a connection to the server:
+    
     Serial.println("connection failed");
   }
 
